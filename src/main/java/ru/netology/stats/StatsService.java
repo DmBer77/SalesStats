@@ -13,14 +13,9 @@ public class StatsService {
 
     // среднее значение
     public double averageSum(int[] sales) {
-        int sumOfElements = 0;
+        int sumOfElements = sumSales(sales);
         int amountOfElements = sales.length;
-        int avSum = 0;
-        for (int sale : sales) {
-            sumOfElements += sale;
-            avSum = sumOfElements / amountOfElements;
-        }
-        return avSum;
+        return sumOfElements / amountOfElements;
     }
 
     // Номер месяца, в котором был пик продаж
@@ -51,15 +46,10 @@ public class StatsService {
 
     // Кол-во месяцев, в которых продажи были ниже среднего
     public int elementsBelowTheAverage(int[] sales) {
-        int sumOfElements = 0;
-        int amountOfElements = sales.length;
         int belowTheAverage = 0;
+        double avSum = averageSum(sales);
         for (int sale : sales) {
-            sumOfElements += sale;
-        }
-        int avSum = sumOfElements / amountOfElements;
-        for (int i = 0; i < amountOfElements; i++) {
-            if (sales[i] < avSum) {
+            if (sale < avSum) {
                 belowTheAverage = belowTheAverage + 1;
             }
         }
@@ -68,15 +58,10 @@ public class StatsService {
 
     // Кол-во месяцев, в которых продажи были выше среднего
     public int elementsAboveTheAverage(int[] sales) {
-        int sumOfElements = 0;
-        int amountOfElements = sales.length;
         int aboveTheAverage = 0;
+        double avSum = averageSum(sales);
         for (int sale : sales) {
-            sumOfElements += sale;
-        }
-        int avSum = sumOfElements / amountOfElements;
-        for (int i = 0; i < amountOfElements; i++) {
-            if (sales[i] > avSum) {
+            if (sale > avSum) {
                 aboveTheAverage = aboveTheAverage + 1;
             }
         }
